@@ -21,7 +21,7 @@
                 android:contentDescription="@string/detail_activity_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/activityTitle"
+                android:id="@+id/inputTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -91,7 +91,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/genderFieldContent"
                     app:layout_constraintVertical_chainStyle="packed"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="24dp" />
+                    android:layout_marginStart="16dp" />
 
             <TextView
                     android:text="@string/gender_example"
@@ -137,7 +137,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/dobFieldContent"
                     app:layout_constraintVertical_chainStyle="packed"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="24dp" />
+                    android:layout_marginStart="16dp" />
 
             <TextView
                     android:text="@string/date_of_birth_example"
@@ -184,7 +184,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/phoneFieldContent"
                     app:layout_constraintVertical_chainStyle="packed"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="24dp" />
+                    android:layout_marginStart="16dp" />
 
             <TextView
                     android:text="@string/mobile_phone_example"
@@ -231,7 +231,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/addressFieldContent"
                     app:layout_constraintVertical_chainStyle="packed"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="24dp" />
+                    android:layout_marginStart="16dp" />
 
             <TextView
                     android:text="@string/home_address_example"
@@ -251,24 +251,24 @@
     <Button
             style="@style/ButtonStyle"
             android:text="@string/button_return_text"
-            android:id="@+id/buttonCancel"
+            android:id="@+id/detailReturnButton"
             android:backgroundTint="@color/red"
             android:contentDescription="@string/button_return_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toStartOf="@+id/buttonSave"
+            app:layout_constraintEnd_toStartOf="@+id/detailModifyButton"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="48dp" />
 
     <Button
             style="@style/ButtonStyle"
             android:text="@string/button_modify_text"
-            android:id="@+id/buttonSave"
+            android:id="@+id/detailModifyButton"
             android:backgroundTint="@color/backgroundSecondary"
             android:contentDescription="@string/button_modify_text"
-            app:layout_constraintStart_toEndOf="@+id/buttonCancel"
+            app:layout_constraintStart_toEndOf="@+id/detailReturnButton"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/buttonCancel" />
+            app:layout_constraintTop_toTopOf="@+id/detailReturnButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

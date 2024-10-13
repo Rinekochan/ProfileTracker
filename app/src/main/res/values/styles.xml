@@ -14,17 +14,10 @@
     </style>
 
     <style name="NormalChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
-        <item name="fontFamily">sans-serif-black</item>
+        <item name="fontFamily">sans-serif-medium</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/textPrimary</item>
         <item name="android:backgroundTint">@android:color/transparent</item>
-        <item name="chipStrokeWidth">0dp</item>
-    </style>
-
-    <style name="LabelChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
-        <item name="fontFamily">sans-serif-black</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/textPrimary</item>
         <item name="chipStrokeWidth">0dp</item>
     </style>
 

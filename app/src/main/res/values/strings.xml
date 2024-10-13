@@ -16,6 +16,7 @@
     <string name="card_delete_content_description">Delete</string>
 
     <!-- String for detail & input activity -->
+    <string name="full_name_section">Full Name</string>
     <string name="gender_section">Gender</string>
     <string name="date_of_birth_section">Date Of Birth</string>
     <string name="mobile_phone_section">Mobile Phone</string>
@@ -26,6 +27,16 @@
     <string name="mobile_phone_example">0412 345 678</string>
     <string name="home_address_example">10 Example Address</string>
     <string name="suburb_example">Dandenong</string>
+    <string name="first_progress_title">Personal</string>
+    <string name="second_progress_title">Contact</string>
+
+    <!-- String for input field helper text -->
+    <string name="full_name_helper">Maximum 20 characters</string>
+    <string name="gender_helper">Maximum 10 characters</string>
+    <string name="date_of_birth_helper">e.g. 10/10/2000</string>
+    <string name="phone_helper">Maximum 15 characters</string>
+    <string name="home_address_helper">Maximum 25 characters</string>
+    <string name="suburb_address_helper">Maximum 15 characters</string>
 
     <!-- String for buttons -->
     <string name="button_return_text">Return</string>

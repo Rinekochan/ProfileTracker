@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/contactInputLayout">
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phoneInputField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/mobile_phone_section"
+            app:boxStrokeWidth="2dp"
+            android:textColorHint="@color/textSecondary"
+            app:boxStrokeColor="@color/textTertiary"
+            app:hintTextColor="@color/textTertiary"
+            android:backgroundTint="@color/textTertiary"
+            app:helperTextEnabled="true"
+            app:helperText="@string/phone_helper"
+            app:errorEnabled="true"
+            app:counterEnabled="true"
+            app:counterMaxLength="15"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                app:endIconMode="clear_text"
+                android:textSize="18sp"
+                android:id="@+id/phoneEditText"
+                android:background="@color/defaultTheme" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/addressInputField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/home_address_section"
+            app:boxStrokeWidth="2dp"
+            android:textColorHint="@color/textSecondary"
+            app:boxStrokeColor="@color/textTertiary"
+            app:hintTextColor="@color/textTertiary"
+            android:backgroundTint="@color/textTertiary"
+            app:helperTextEnabled="true"
+            app:helperText="@string/home_address_helper"
+            app:errorEnabled="true"
+            app:counterEnabled="true"
+            app:counterMaxLength="25"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/phoneInputField"
+            app:layout_constraintEnd_toEndOf="@+id/phoneInputField">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                app:endIconMode="clear_text"
+                android:textSize="18sp"
+                android:id="@+id/addressEditText"
+                android:background="@color/defaultTheme"
+                android:inputType="date" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/suburbInputField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/suburb_section"
+            app:boxStrokeWidth="2dp"
+            android:textColorHint="@color/textSecondary"
+            app:boxStrokeColor="@color/textTertiary"
+            app:hintTextColor="@color/textTertiary"
+            android:backgroundTint="@color/textTertiary"
+            app:helperTextEnabled="true"
+            app:helperText="@string/suburb_address_helper"
+            app:errorEnabled="true"
+            app:counterEnabled="true"
+            app:counterMaxLength="15"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/addressInputField"
+            app:layout_constraintStart_toStartOf="@+id/addressInputField"
+            app:layout_constraintEnd_toEndOf="@+id/addressInputField">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                app:endIconMode="clear_text"
+                android:textSize="18sp"
+                android:id="@+id/suburbEditText"
+                android:background="@color/defaultTheme" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+            style="@style/ButtonStyle"
+            android:text="@string/button_return_text"
+            android:id="@+id/inputReturnButton"
+            android:backgroundTint="@color/red"
+            android:contentDescription="@string/button_return_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@+id/inputSaveButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="48dp" />
+
+    <Button
+            style="@style/ButtonStyle"
+            android:text="@string/button_save_text"
+            android:id="@+id/inputSaveButton"
+            android:backgroundTint="@color/backgroundSecondary"
+            android:contentDescription="@string/button_save_text"
+            app:layout_constraintStart_toEndOf="@+id/inputReturnButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/inputReturnButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
