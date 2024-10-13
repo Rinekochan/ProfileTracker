@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">assignment3</string>
+
+    <!-- Title string for activity and fragments-->
+    <string name="main_activity_title">Contact Details</string>
+    <string name="detail_activity_title">Profile Detail</string>
+    <string name="input_activity_title_add">Add new profile</string>
+    <string name="input_activity_title_modify">Modify current profile</string>
+
+    <!-- String for main activity -->
+    <string name="main_activity_all_filter">All</string>
+    <string name="main_activity_family_filter">Family</string>
+    <string name="main_activity_friend_filter">Friend</string>
+    <string name="main_activity_floating_button_text">Add</string>
+    <string name="card_title_default">Viet Hoang Pham</string>
+    <string name="card_dob_default">10/10/2010</string>
+    <string name="card_label_default">Family</string>
+    <string name="card_detail_content_description">Detail</string>
+    <string name="card_delete_content_description">Delete</string>
+
+    <!-- Extra String -->
+    <string name="divider">|</string>
+
 </resources>
