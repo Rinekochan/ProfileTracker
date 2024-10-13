@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/detail"
+        android:background="@color/white"
+        >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="175dp"
+            android:id="@+id/titleSection"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/backgroundPrimary">
+
+        <TextView
+                style="@style/ActivityTitleStyle"
+                android:text="@string/detail_activity_title"
+                android:contentDescription="@string/detail_activity_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/activityTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginBottom="16dp" />
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@color/backgroundSecondary"
+                android:id="@+id/profileLabelLayout">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/ActivityTitleStyle"
+                    android:text="@string/family_label"
+                    android:contentDescription="@string/family_label"
+                    android:id="@+id/profileLabel"
+                    android:gravity="center" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+            android:text="@string/card_title_default"
+            style="@style/DetailTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/profileName"
+            app:layout_constraintTop_toBottomOf="@+id/titleSection"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="36dp" />
+
+    <com.google.android.material.card.MaterialCardView
+            android:layout_width="315dp"
+            android:layout_height="65dp"
+            android:id="@+id/genderFieldCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profileName"
+            android:layout_marginTop="36dp"
+            app:strokeWidth="0dp"
+            app:cardCornerRadius="8dp"
+            >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/genderFieldLayout"
+                android:background="@color/defaultTheme">
+
+            <TextView
+                    android:text="@string/gender_section"
+                    android:contentDescription="@string/gender_section"
+                    style="@style/CardTitleStyle"
+                    android:textColor="@color/backgroundPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/genderFieldTitle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/genderFieldContent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="24dp" />
+
+            <TextView
+                    android:text="@string/gender_example"
+                    android:contentDescription="@string/gender_example"
+                    style="@style/CardContentStyle"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/genderFieldContent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/genderFieldTitle"
+                    app:layout_constraintStart_toStartOf="@+id/genderFieldTitle"
+                    android:layout_marginBottom="2dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+            android:layout_width="315dp"
+            android:layout_height="65dp"
+            android:id="@+id/dobFieldCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/genderFieldCard"
+            android:layout_marginTop="32dp"
+            app:strokeWidth="0dp"
+            app:cardCornerRadius="8dp"
+            >
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/dobFieldLayout"
+                android:background="@color/defaultTheme">
+
+            <TextView
+                    android:text="@string/date_of_birth_section"
+                    android:contentDescription="@string/date_of_birth_section"
+                    style="@style/CardTitleStyle"
+                    android:textColor="@color/backgroundPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/dobFieldTitle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/dobFieldContent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="24dp" />
+
+            <TextView
+                    android:text="@string/date_of_birth_example"
+                    android:contentDescription="@string/date_of_birth_example"
+                    style="@style/CardContentStyle"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/dobFieldContent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dobFieldTitle"
+                    app:layout_constraintStart_toStartOf="@+id/dobFieldTitle"
+                    android:layout_marginBottom="2dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+            android:layout_width="315dp"
+            android:layout_height="65dp"
+            android:id="@+id/phoneFieldCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dobFieldCard"
+            android:layout_marginTop="32dp"
+            app:strokeWidth="0dp"
+            app:cardCornerRadius="8dp"
+            >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/phoneFieldLayout"
+                android:background="@color/defaultTheme">
+
+            <TextView
+                    android:text="@string/mobile_phone_section"
+                    android:contentDescription="@string/mobile_phone_section"
+                    style="@style/CardTitleStyle"
+                    android:textColor="@color/backgroundPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/phoneFieldTitle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/phoneFieldContent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="24dp" />
+
+            <TextView
+                    android:text="@string/mobile_phone_example"
+                    android:contentDescription="@string/mobile_phone_example"
+                    style="@style/CardContentStyle"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/phoneFieldContent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/phoneFieldTitle"
+                    app:layout_constraintStart_toStartOf="@+id/phoneFieldTitle"
+                    android:layout_marginBottom="2dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+            android:layout_width="315dp"
+            android:layout_height="65dp"
+            android:id="@+id/addressFieldCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phoneFieldCard"
+            android:layout_marginTop="32dp"
+            app:strokeWidth="0dp"
+            app:cardCornerRadius="8dp"
+            >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/addressFieldLayout"
+                android:background="@color/defaultTheme">
+
+            <TextView
+                    android:text="@string/home_address_section"
+                    android:contentDescription="@string/home_address_section"
+                    style="@style/CardTitleStyle"
+                    android:textColor="@color/backgroundPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/addressFieldTitle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/addressFieldContent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="24dp" />
+
+            <TextView
+                    android:text="@string/home_address_example"
+                    android:contentDescription="@string/home_address_example"
+                    style="@style/CardContentStyle"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/addressFieldContent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/addressFieldTitle"
+                    app:layout_constraintStart_toStartOf="@+id/addressFieldTitle"
+                    android:layout_marginBottom="2dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <Button
+            style="@style/ButtonStyle"
+            android:text="@string/button_return_text"
+            android:id="@+id/buttonCancel"
+            android:backgroundTint="@color/red"
+            android:contentDescription="@string/button_return_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@+id/buttonSave"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="48dp" />
+
+    <Button
+            style="@style/ButtonStyle"
+            android:text="@string/button_modify_text"
+            android:id="@+id/buttonSave"
+            android:backgroundTint="@color/backgroundSecondary"
+            android:contentDescription="@string/button_modify_text"
+            app:layout_constraintStart_toEndOf="@+id/buttonCancel"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/buttonCancel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

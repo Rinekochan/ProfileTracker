@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-
-    </style>
 
     <style name="ActivityTitleStyle" parent="">
         <item name="fontFamily">sans-serif-medium</item>
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/textPrimary</item>
+    </style>
+
+    <style name="DetailTitleStyle" parent="">
+        <item name="fontFamily">sans-serif-black</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/textSecondary</item>
     </style>
 
     <style name="NormalChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
@@ -33,7 +34,7 @@
         <item name="android:textColor">@color/textSecondary</item>
     </style>
 
-    <style name="CardDobStyle" parent="">
+    <style name="CardContentStyle" parent="">
         <item name="fontFamily">sans-serif</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/textSecondary</item>
@@ -52,6 +53,13 @@
     <style name="FloatingButtonStyle" parent="">
         <item name="android:backgroundTint">@color/backgroundPrimary</item>
         <item name="tint">@color/textPrimary</item>
+    </style>
+
+    <style name="ButtonStyle" parent="">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">55dp</item>
     </style>
 
 </resources>

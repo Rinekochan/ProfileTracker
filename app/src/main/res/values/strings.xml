@@ -9,16 +9,34 @@
 
     <!-- String for main activity -->
     <string name="main_activity_all_filter">All</string>
-    <string name="main_activity_family_filter">Family</string>
-    <string name="main_activity_friend_filter">Friend</string>
     <string name="main_activity_floating_button_text">Add</string>
     <string name="card_title_default">Viet Hoang Pham</string>
     <string name="card_dob_default">10/10/2010</string>
-    <string name="card_label_default">Family</string>
     <string name="card_detail_content_description">Detail</string>
     <string name="card_delete_content_description">Delete</string>
 
+    <!-- String for detail & input activity -->
+    <string name="gender_section">Gender</string>
+    <string name="date_of_birth_section">Date Of Birth</string>
+    <string name="mobile_phone_section">Mobile Phone</string>
+    <string name="home_address_section">Home Address</string>
+    <string name="suburb_section">Suburb</string>
+    <string name="gender_example">Male</string>
+    <string name="date_of_birth_example">10/10/2000</string>
+    <string name="mobile_phone_example">0412 345 678</string>
+    <string name="home_address_example">10 Example Address</string>
+    <string name="suburb_example">Dandenong</string>
+
+    <!-- String for buttons -->
+    <string name="button_return_text">Return</string>
+    <string name="button_cancel_text">Cancel</string>
+    <string name="button_next_text">Next</string>
+    <string name="button_save_text">Save</string>
+    <string name="button_modify_text">Modify</string>
+
     <!-- Extra String -->
+    <string name="family_label">Family</string>
+    <string name="friend_label">Friend</string>
     <string name="divider">|</string>
 
 </resources>
