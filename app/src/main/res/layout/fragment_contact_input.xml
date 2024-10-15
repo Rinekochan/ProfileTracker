@@ -24,7 +24,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            >
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -33,7 +34,8 @@
                 app:endIconMode="clear_text"
                 android:textSize="18sp"
                 android:id="@+id/phoneEditText"
-                android:background="@color/defaultTheme" />
+                android:background="@color/defaultTheme"
+                android:inputType="phone"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

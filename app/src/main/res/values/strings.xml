@@ -34,13 +34,14 @@
     <string name="full_name_helper">Maximum 20 characters</string>
     <string name="gender_helper">Maximum 10 characters</string>
     <string name="date_of_birth_helper">e.g. 10/10/2000</string>
-    <string name="phone_helper">Maximum 15 characters</string>
+    <string name="phone_helper">e.g. 0412 345 678</string>
     <string name="home_address_helper">Maximum 25 characters</string>
     <string name="suburb_address_helper">Maximum 15 characters</string>
 
     <!-- String for input error text -->
     <string name="full_name_empty">Full name is required</string>
     <string name="phone_empty">Phone number is required</string>
+    <string name="phone_invalid">Phone number is in invalid format</string>
 
     <!-- String for buttons -->
     <string name="button_return_text">Return</string>

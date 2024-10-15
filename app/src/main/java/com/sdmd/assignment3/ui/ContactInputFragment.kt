@@ -1,6 +1,7 @@
 package com.sdmd.assignment3.ui
 
 import android.os.Bundle
+import android.telephony.PhoneNumberUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,16 +10,16 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity.RESULT_CANCELED
 import androidx.appcompat.app.AppCompatActivity.RESULT_OK
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.google.android.material.chip.Chip
 import com.google.android.material.textfield.TextInputEditText
 import com.sdmd.assignment3.R
 import com.sdmd.assignment3.viewmodel.InputActivityViewModel
 
 const val ContactInputFragmentTAG: String = "ContactInputFragment"
 
-class ContactInputFragment : Fragment() {
+class ContactInputFragment : Fragment(), ConfirmationDialogFragment.ConfirmationDialogListener {
     private lateinit var returnButton: Button
     private lateinit var saveButton: Button
     private lateinit var phoneEditText: TextInputEditText
@@ -47,20 +48,19 @@ class ContactInputFragment : Fragment() {
         update()
         // Anonymous function that moves to the previous page of input activity
         val previousPage: (() -> (Unit)) = {
-            Log.i(PersonalInputFragmentTAG, "Change to PersonalInputFragment")
+            Log.i(ContactInputFragmentTAG, "Change to PersonalInputFragment")
             inputActivityViewModel.setPreviousPage()
         }
 
         // Anonymous function that returns the profile details to Main Activity
         val saveProfile: (() -> (Unit)) = {
             if(validateInput()) {
-                Log.i(PersonalInputFragmentTAG, "User clicks Save - Save Successfully")
-                inputActivityViewModel.setContactDetails(phoneEditText.text.toString(), addressEditText.text.toString(), suburbEditText.text.toString())
-                Log.i(PersonalInputFragmentTAG, "Set contact details ${inputActivityViewModel.currentProfile.value}")
-
-                requireActivity().intent.putExtra("Profile", inputActivityViewModel.currentProfile.value)
-                requireActivity().setResult(RESULT_OK, requireActivity().intent)
-                requireActivity().finish()
+                Log.i(ContactInputFragmentTAG, "Save Dialog pops up")
+                // Call the confirmation dialog to ensure this is not an accident
+                val dialog = ConfirmationDialogFragment("Save confirmation", "Are you sure you want to save this profile?")
+                dialog.show(childFragmentManager, "SaveDialogFragment")
+            } else {
+                Toast.makeText(requireActivity(), "There's error in your submitted details", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -89,12 +89,35 @@ class ContactInputFragment : Fragment() {
         if(phoneEditText.text.toString().trim().isEmpty()) {
             phoneEditText.error = getString(R.string.phone_empty)
             isCorrected = false
-            Log.d(PersonalInputFragmentTAG, "Phone Input: ${phoneEditText.text.toString()} - Error: The field is empty")
+            Log.d(ContactInputFragmentTAG, "Phone Input: ${phoneEditText.text.toString()} - Error: The field is empty")
+        } else if (PhoneNumberUtils.isGlobalPhoneNumber(phoneEditText.text.toString().trim())) {
+            phoneEditText.error = getString(R.string.phone_invalid)
+            isCorrected = false
+            Log.d(ContactInputFragmentTAG, "Phone Input: ${phoneEditText.text.toString()} - Error: Phone is in invalid format")
         } else {
-            phoneEditText.error = null
-            Log.d(PersonalInputFragmentTAG, "Phone Input: ${phoneEditText.text.toString()} - No Error")
+            Log.d(ContactInputFragmentTAG, "Phone Input: ${phoneEditText.text.toString()} - No Error")
         }
 
         return isCorrected
+    }
+
+    // Actions for dialog if users click Yes
+    override fun onConfirmationDialogPositiveClick(dialog: DialogFragment) {
+        Log.i(ContactInputFragmentTAG, "User clicks Save - Save Successfully")
+        inputActivityViewModel.setContactDetails(phoneEditText.text.toString(), addressEditText.text.toString(), suburbEditText.text.toString())
+        Log.i(ContactInputFragmentTAG, "Set contact details ${inputActivityViewModel.currentProfile.value}")
+
+        Toast.makeText(requireActivity(), "Saving details successfully", Toast.LENGTH_SHORT).show()
+        // Returns the profile result
+        requireActivity().intent.putExtra("Profile", inputActivityViewModel.currentProfile.value)
+        requireActivity().setResult(RESULT_OK, requireActivity().intent)
+        requireActivity().finish()
+    }
+
+    // Actions for dialog if users click No
+    override fun onConfirmationDialogNegativeClick(dialog: DialogFragment) {
+        Log.i(ContactInputFragmentTAG, "User clicks No - Action Cancelled")
+        // Handle the Cancel action from cancel dialog
+        Toast.makeText(requireActivity(), "Action Cancelled", Toast.LENGTH_SHORT).show()
     }
 }

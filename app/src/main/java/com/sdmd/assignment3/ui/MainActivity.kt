@@ -3,12 +3,15 @@ package com.sdmd.assignment3.ui
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.transition.Explode
 import android.util.Log
+import android.view.Window
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.chip.Chip
@@ -25,6 +28,15 @@ class MainActivity : AppCompatActivity() {
     private val mainActivityViewModel: MainActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        with(window) {
+            requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+            // set set the transition to be shown when the user enters this activity
+            enterTransition = Explode()
+            // set the transition to be shown when the user leaves this activity
+            exitTransition = Explode()
+            exitTransition.duration = 1000
+        }
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         enableEdgeToEdge()
@@ -52,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         val addNewItem: (() -> (Unit)) = {
             Log.i(MainActivityTAG, "Create intent from MainActivity to InputActivity")
             val intent = Intent(this, InputActivity::class.java)
-            startForResult.launch(intent)
+            startForResult.launch(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(this))
         }
 
         // Handles both normal click and long click events
@@ -72,7 +84,7 @@ class MainActivity : AppCompatActivity() {
             Log.i(MainActivityTAG, "Receive intent result to MainActivity")
             when (result.resultCode) {
                 Activity.RESULT_OK -> {
-                    Log.i(MainActivityTAG, "Add new profile successfully")
+                    Log.i(MainActivityTAG, "Saving profile successfully")
                     val intent = result.data
                     // Handle the Intent
                     intent?.getParcelableExtra("", InputActivity::class.java)?.let {
@@ -80,7 +92,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 Activity.RESULT_CANCELED -> {
-                    Log.i(MainActivityTAG, "Cancel profile creation")
+                    Log.i(MainActivityTAG, "Cancel profile creation/modification")
                 }
             }
         }
