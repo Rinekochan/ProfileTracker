@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
             exitTransition = Explode()
             exitTransition.duration = 1000
         }
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         enableEdgeToEdge()
@@ -45,7 +44,6 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, 0, systemBars.right, 0)
             insets
         }
-
         init()
     }
 

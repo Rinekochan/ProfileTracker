@@ -7,7 +7,7 @@ import com.google.firebase.Timestamp
 // This class stores the profile details
 @Parcelize
 data class Profile(
-    var id: Int?,
+    var id: String?,
     var name: String?,
     var birthday: String?,
     var gender: String?,
