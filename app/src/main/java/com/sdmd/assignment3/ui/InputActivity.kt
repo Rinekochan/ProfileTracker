@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentManager
 import com.sdmd.assignment3.R
 import com.sdmd.assignment3.viewmodel.InputActivityViewModel
 
-const val InputActivityTAG : String = "InputActivity"
+const val InputActivityTAG: String = "InputActivity"
 
 class InputActivity : AppCompatActivity() {
     private val inputActivityViewModel: InputActivityViewModel by viewModels()
@@ -40,16 +40,19 @@ class InputActivity : AppCompatActivity() {
     // Select fragment based on currentPage
     private fun selectFragment(fragmentManager: FragmentManager, currentPage: Int) {
         Log.i(InputActivityTAG, "SelectFragment called")
-        when(currentPage) {  // If the user is focusing on personal input page, show PersonalInputFragment
+        when (currentPage) {  // If the user is focusing on personal input page, show PersonalInputFragment
             0 -> {
                 Log.d(InputActivityTAG, "Open PersonalInputFragment")
                 val myFragment = PersonalInputFragment()
-                fragmentManager.beginTransaction().replace(R.id.inputFragmentLayout, myFragment).commit()
+                fragmentManager.beginTransaction().replace(R.id.inputFragmentLayout, myFragment)
+                    .commit()
             }
+
             1 -> { // If the user is focusing on contact input page, show ContactInputFragment
                 Log.d(InputActivityTAG, "Open ContactInputFragment")
                 val myFragment = ContactInputFragment()
-                fragmentManager.beginTransaction().replace(R.id.inputFragmentLayout, myFragment).commit()
+                fragmentManager.beginTransaction().replace(R.id.inputFragmentLayout, myFragment)
+                    .commit()
             }
         }
     }

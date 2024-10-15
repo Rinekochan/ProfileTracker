@@ -11,14 +11,13 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.forEach
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.sdmd.assignment3.R
 import com.sdmd.assignment3.viewmodel.MainActivityViewModel
 
-const val MainActivityTAG : String = "MainActivity"
+const val MainActivityTAG: String = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
     private lateinit var fabAddButton: FloatingActionButton
@@ -55,8 +54,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Handles both normal click and long click events
-        fabAddButton.setOnClickListener{ addNewItem.invoke() }
-        fabAddButton.setOnLongClickListener{ addNewItem.invoke(); true }
+        fabAddButton.setOnClickListener { addNewItem.invoke() }
+        fabAddButton.setOnLongClickListener { addNewItem.invoke(); true }
 
         // Update view model if any category is checked
         categories.setOnCheckedStateChangeListener { _, checkedId ->
@@ -66,18 +65,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Initialise the call for results intent
-    private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-        Log.i(MainActivityTAG, "Receive intent result to MainActivity")
-        when(result.resultCode){
-            Activity.RESULT_OK -> {
-                val intent = result.data
-                // Handle the Intent
-                intent?.getParcelableExtra("", InputActivity::class.java)?.let {
+    private val startForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            Log.i(MainActivityTAG, "Receive intent result to MainActivity")
+            when (result.resultCode) {
+                Activity.RESULT_OK -> {
+                    val intent = result.data
+                    // Handle the Intent
+                    intent?.getParcelableExtra("", InputActivity::class.java)?.let {
 //                    mainActivityViewModel.create(it) // Create new object to the database
+                    }
                 }
             }
         }
-    }
 
     private fun initViewModel() {
 

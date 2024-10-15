@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/personalInputLayout"
@@ -51,7 +52,7 @@
             app:helperText="@string/date_of_birth_helper"
             app:errorEnabled="true"
             app:counterEnabled="true"
-            app:counterMaxLength="20"
+            app:counterMaxLength="10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fullNameInputField"
@@ -168,5 +169,17 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/inputCancelButton" />
+
+    <TextView
+            style="@style/CardTitleStyle"
+            android:textColor="@color/red"
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            app:layout_constraintEnd_toStartOf="@+id/inputNextButton"
+            app:layout_constraintStart_toEndOf="@+id/inputCancelButton"
+            app:layout_constraintBottom_toTopOf="@+id/inputCancelButton"
+            android:layout_marginBottom="24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

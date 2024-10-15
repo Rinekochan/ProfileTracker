@@ -7,7 +7,8 @@ import com.google.firebase.Timestamp
 import com.sdmd.assignment3.model.Profile
 
 class InputActivityViewModel : ViewModel() {
-    private val _currentProfile = MutableLiveData(Profile(null, null, null, null, null, null, null, null, null, null))
+    private val _currentProfile =
+        MutableLiveData(Profile(null, null, null, null, null, null, null, null, null, null))
     val currentProfile: LiveData<Profile>
         get() = _currentProfile
 
