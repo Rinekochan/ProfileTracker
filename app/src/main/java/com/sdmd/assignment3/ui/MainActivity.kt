@@ -37,11 +37,13 @@ class MainActivity : AppCompatActivity() {
         init()
     }
 
+    // Initialise activity view and viewmodel
     private fun init() {
         initView()
         initViewModel()
     }
 
+    // Initialise activity view
     private fun initView() {
         fabAddButton = findViewById(R.id.addFabButton)
         categories = findViewById(R.id.filterGroup)
@@ -70,15 +72,20 @@ class MainActivity : AppCompatActivity() {
             Log.i(MainActivityTAG, "Receive intent result to MainActivity")
             when (result.resultCode) {
                 Activity.RESULT_OK -> {
+                    Log.i(MainActivityTAG, "Add new profile successfully")
                     val intent = result.data
                     // Handle the Intent
                     intent?.getParcelableExtra("", InputActivity::class.java)?.let {
 //                    mainActivityViewModel.create(it) // Create new object to the database
                     }
                 }
+                Activity.RESULT_CANCELED -> {
+                    Log.i(MainActivityTAG, "Cancel profile creation")
+                }
             }
         }
 
+    // Initialise activity viewmodel
     private fun initViewModel() {
 
     }

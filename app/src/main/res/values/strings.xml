@@ -40,7 +40,7 @@
 
     <!-- String for input error text -->
     <string name="full_name_empty">Full name is required</string>
-    <string name="phone_empty">Phone is required</string>
+    <string name="phone_empty">Phone number is required</string>
 
     <!-- String for buttons -->
     <string name="button_return_text">Return</string>

@@ -1,6 +1,5 @@
 package com.sdmd.assignment3.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -39,6 +38,7 @@ class PersonalInputFragment : Fragment() {
         return view
     }
 
+    // Initialise activity view
     private fun init(view: View) {
         cancelButton = view.findViewById(R.id.inputCancelButton)
         nextButton = view.findViewById(R.id.inputNextButton)
@@ -46,15 +46,12 @@ class PersonalInputFragment : Fragment() {
         dateOfBirthEditText = view.findViewById(R.id.dobEditText)
         genderEditText = view.findViewById(R.id.genderEditText)
         categoryInputGroup = view.findViewById(R.id.filterInputLabelGroup)
+        update()
 
         // Anonymous function that cancel this input activity
         val cancelInput: (() -> (Unit)) = {
-            Log.i(PersonalInputFragmentTAG, "User clicks Cancel - Input Cancelled")
             Toast.makeText(requireActivity(), "Input Cancelled", Toast.LENGTH_SHORT).show()
-            requireActivity().setResult(
-                RESULT_CANCELED,
-                requireActivity().intent
-            ) // Users cancel so nothing happens
+            requireActivity().setResult(RESULT_CANCELED, requireActivity().intent) // Users cancel so nothing happens
             requireActivity().finish()
         }
 
@@ -79,6 +76,21 @@ class PersonalInputFragment : Fragment() {
         nextButton.setOnLongClickListener { nextPage.invoke(); true }
     }
 
+    // Update edit text fields if the profile has been entered before
+    private fun update() {
+        inputActivityViewModel.currentProfile.value?.let {
+            fullNameEditText.setText(it.name)
+            dateOfBirthEditText.setText(it.birthday)
+            genderEditText.setText(it.category)
+
+            when(it.category) {
+                "Family" -> categoryInputGroup.check(R.id.familyInputChip)
+                "Friend" -> categoryInputGroup.check(R.id.friendInputChip)
+            }
+        }
+    }
+
+    // Validate user input before moving to next fragment
     private fun validateInput() : Boolean {
         var isCorrected = true
 

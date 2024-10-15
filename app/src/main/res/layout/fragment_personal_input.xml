@@ -170,16 +170,4 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/inputCancelButton" />
 
-    <TextView
-            style="@style/CardTitleStyle"
-            android:textColor="@color/red"
-            android:text=""
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            app:layout_constraintEnd_toStartOf="@+id/inputNextButton"
-            app:layout_constraintStart_toEndOf="@+id/inputCancelButton"
-            app:layout_constraintBottom_toTopOf="@+id/inputCancelButton"
-            android:layout_marginBottom="24dp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
