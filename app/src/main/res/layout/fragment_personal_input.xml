@@ -118,12 +118,13 @@
                 app:layout_constraintEnd_toEndOf="@+id/genderField"
                 app:layout_constraintStart_toStartOf="@+id/genderField"
                 app:layout_constraintTop_toBottomOf="@+id/genderField"
-                app:singleSelection="true">
+                app:singleSelection="true"
+                app:selectionRequired="true"
+                app:checkedChip="@id/familyInputChip">
 
             <com.google.android.material.chip.Chip
-                    style="@style/NormalChipStyle"
+                    style="@style/InputChipStyle"
                     android:text="@string/family_label"
-                    android:backgroundTint="@color/textTertiary"
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     app:chipStrokeWidth="1dp"
@@ -133,12 +134,10 @@
                     android:layout_margin="8dp" />
 
             <com.google.android.material.chip.Chip
-                    style="@style/NormalChipStyle"
+                    style="@style/InputChipStyle"
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:text="@string/friend_label"
-                    android:backgroundTint="@color/textPrimary"
-                    android:textColor="@color/textSecondary"
                     android:id="@+id/friendInputChip"
                     app:chipStrokeWidth="1dp"
                     android:textAlignment="center"

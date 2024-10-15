@@ -58,8 +58,8 @@ class MainActivity : AppCompatActivity() {
         fabAddButton.setOnClickListener{ addNewItem.invoke() }
         fabAddButton.setOnLongClickListener{ addNewItem.invoke(); true }
 
-        // Update view model if any chip is checked
-        categories.setOnCheckedStateChangeListener { group, checkedId ->
+        // Update view model if any category is checked
+        categories.setOnCheckedStateChangeListener { _, checkedId ->
             Log.d(MainActivityTAG, "${checkedId[0]} checked")
             mainActivityViewModel.selectCategory(findViewById<Chip>(checkedId[0]).text.toString())
         }

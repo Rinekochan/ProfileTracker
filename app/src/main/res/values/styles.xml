@@ -20,6 +20,11 @@
         <item name="chipStrokeWidth">0dp</item>
     </style>
 
+    <style name="InputChipStyle" parent="NormalChipStyle">
+        <item name="chipBackgroundColor">@color/background_category_input_color</item>
+        <item name="android:textColor">@color/text_category_input_color</item>
+    </style>
+
     <style name="CardTitleStyle" parent="">
         <item name="fontFamily">sans-serif-black</item>
         <item name="android:textSize">18sp</item>
