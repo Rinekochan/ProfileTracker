@@ -4,18 +4,21 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.forEach
+import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.sdmd.assignment3.R
 import com.sdmd.assignment3.viewmodel.MainActivityViewModel
 
-const val MainActivityTAG : String = "Main Activity"
+const val MainActivityTAG : String = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
     private lateinit var fabAddButton: FloatingActionButton
@@ -25,15 +28,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        enableEdgeToEdge()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(systemBars.left, 0, systemBars.right, 0)
             insets
         }
 
         init()
-
-
     }
 
     private fun init() {
@@ -48,13 +50,19 @@ class MainActivity : AppCompatActivity() {
         // Anonymous function handles intent creation to InputActivity
         val addNewItem: (() -> (Unit)) = {
             Log.i(MainActivityTAG, "Create intent from MainActivity to InputActivity")
-            val intent = Intent(this, DetailActivity::class.java)
+            val intent = Intent(this, InputActivity::class.java)
             startForResult.launch(intent)
         }
 
         // Handles both normal click and long click events
         fabAddButton.setOnClickListener{ addNewItem.invoke() }
         fabAddButton.setOnLongClickListener{ addNewItem.invoke(); true }
+
+        // Update view model if any chip is checked
+        categories.setOnCheckedStateChangeListener { group, checkedId ->
+            Log.d(MainActivityTAG, "${checkedId[0]} checked")
+            mainActivityViewModel.selectCategory(findViewById<Chip>(checkedId[0]).text.toString())
+        }
     }
 
     // Initialise the call for results intent
@@ -65,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                 val intent = result.data
                 // Handle the Intent
                 intent?.getParcelableExtra("", InputActivity::class.java)?.let {
-                    mainActivityViewModel.create(it) // Create new object to the database
+//                    mainActivityViewModel.create(it) // Create new object to the database
                 }
             }
         }

@@ -48,7 +48,7 @@
                     <TextView
                             android:text="@string/family_label"
                             android:contentDescription="@string/family_label"
-                            style="@style/LabelChipStyle"
+                            style="@style/NormalChipStyle"
                             android:textSize="12sp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

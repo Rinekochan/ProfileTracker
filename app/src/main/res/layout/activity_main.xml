@@ -44,7 +44,9 @@
                     android:layout_height="wrap_content"
                     app:checkedChip="@id/allFilterButton"
                     android:id="@+id/filterGroup"
-                    app:singleSelection="true">
+                    app:singleSelection="true"
+                    app:selectionRequired="true"
+                    >
 
                 <com.google.android.material.chip.Chip
                         style="@style/NormalChipStyle"
@@ -54,15 +56,7 @@
                         android:text="@string/main_activity_all_filter"
                         android:contentDescription="@string/main_activity_all_filter"
                         android:fontFamily="sans-serif-medium"
-                        android:backgroundTint="@color/backgroundSecondary" />
-
-                <TextView
-                        style="@style/ActivityTitleStyle"
-                        android:text="@string/divider"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/divider"
-                        android:textSize="32sp" />
+                        app:chipBackgroundColor="@color/category_color"/>
 
                 <com.google.android.material.chip.Chip
                         style="@style/NormalChipStyle"
@@ -71,7 +65,8 @@
                         android:id="@+id/familyFilterButton"
                         android:text="@string/family_label"
                         android:contentDescription="@string/family_label"
-                        android:fontFamily="sans-serif-medium" />
+                        android:fontFamily="sans-serif-medium"
+                        app:chipBackgroundColor="@color/category_color"/>
 
                 <com.google.android.material.chip.Chip
                         style="@style/NormalChipStyle"
@@ -80,7 +75,8 @@
                         android:id="@+id/friendFilterButton"
                         android:text="@string/friend_label"
                         android:contentDescription="@string/friend_label"
-                        android:fontFamily="sans-serif-medium" />
+                        android:fontFamily="sans-serif-medium"
+                        app:chipBackgroundColor="@color/category_color"/>
 
             </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
