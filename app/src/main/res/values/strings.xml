@@ -18,8 +18,10 @@
     <!-- String for detail & input activity -->
     <string name="full_name_section">Full Name <font color="#FF0000">*</font></string>
     <string name="gender_section">Gender</string>
-    <string name="date_of_birth_section">Date Of Birth</string>
+    <string name="date_of_birth_section">Date Of Birth <font color="#FF0000">*</font></string>
+    <string name="date_of_birth_section_with_no_asterisk">Date Of Birth</string>
     <string name="mobile_phone_section">Mobile Phone <font color="#FF0000">*</font></string>
+    <string name="mobile_phone_section_with_no_asterisk">Mobile Phone</string>
     <string name="home_address_section">Home Address</string>
     <string name="suburb_section">Suburb</string>
     <string name="gender_example">Male</string>
@@ -33,13 +35,15 @@
     <!-- String for input field helper text -->
     <string name="full_name_helper">Maximum 20 characters</string>
     <string name="gender_helper">Maximum 10 characters</string>
-    <string name="date_of_birth_helper">e.g. 10/10/2000</string>
+    <string name="date_of_birth_helper">dd/mm/yyyy format</string>
     <string name="phone_helper">e.g. 0412 345 678</string>
     <string name="home_address_helper">Maximum 25 characters</string>
     <string name="suburb_address_helper">Maximum 15 characters</string>
 
     <!-- String for input error text -->
     <string name="full_name_empty">Full name is required</string>
+    <string name="dob_empty">Date of birth is required</string>
+    <string name="dob_invalid">Date of birth is in invalid format</string>
     <string name="phone_empty">Phone number is required</string>
     <string name="phone_invalid">Phone number is in invalid format</string>
 

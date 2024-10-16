@@ -38,7 +38,7 @@ class ContactInputFragment : Fragment(), ConfirmationDialogFragment.Confirmation
         return view
     }
 
-    // Initialise activity view
+    // Initialise fragment view
     private fun init(view: View) {
         returnButton = view.findViewById(R.id.inputReturnButton)
         saveButton = view.findViewById(R.id.inputSaveButton)
@@ -48,6 +48,10 @@ class ContactInputFragment : Fragment(), ConfirmationDialogFragment.Confirmation
         update()
         // Anonymous function that moves to the previous page of input activity
         val previousPage: (() -> (Unit)) = {
+            // Save current details before going back to previous input page
+            inputActivityViewModel.setContactDetails(phoneEditText.text.toString(), addressEditText.text.toString(), suburbEditText.text.toString())
+            Log.i(ContactInputFragmentTAG, "Set contact details ${inputActivityViewModel.currentProfile.value}")
+
             Log.i(ContactInputFragmentTAG, "Change to PersonalInputFragment")
             inputActivityViewModel.setPreviousPage()
         }

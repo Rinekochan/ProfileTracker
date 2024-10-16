@@ -40,7 +40,7 @@ class PersonalInputFragment : Fragment(), ConfirmationDialogFragment.Confirmatio
         return view
     }
 
-    // Initialise activity view
+    // Initialise fragment view
     private fun init(view: View) {
         cancelButton = view.findViewById(R.id.inputCancelButton)
         nextButton = view.findViewById(R.id.inputNextButton)
@@ -55,7 +55,7 @@ class PersonalInputFragment : Fragment(), ConfirmationDialogFragment.Confirmatio
             Log.i(PersonalInputFragmentTAG, "Cancel Dialog pops up")
             // Call the confirmation dialog to ensure this is not an accident
             val dialog = ConfirmationDialogFragment("Cancel confirmation", "Are you sure you want to cancel this progress?")
-            dialog.show(childFragmentManager, "SaveDialogFragment")
+            dialog.show(childFragmentManager, "CancelDialogFragment")
         }
 
         // Anonymous function that moves to the next page of input activity
@@ -107,6 +107,23 @@ class PersonalInputFragment : Fragment(), ConfirmationDialogFragment.Confirmatio
         } else {
             fullNameEditText.error = null
             Log.d(PersonalInputFragmentTAG, "Full Name Input: ${fullNameEditText.text.toString()} - No Error")
+        }
+
+        //Regex for date of birth pattern
+        val dobPattern = Regex("[0-9]{2}/[0-9]{2}/[0-9]{4}")
+        val dobText = dateOfBirthEditText.text.toString().trim()
+
+        if(dobText.isEmpty()) { // Check if the date of birth field is filled
+            dateOfBirthEditText.error = getString(R.string.dob_empty)
+            isCorrected = false
+            Log.d(PersonalInputFragmentTAG, "DOB Input: ${dateOfBirthEditText.text.toString()} - Error: The field is empty")
+        } else if(!dobText.matches(dobPattern)) { // Check if the date of birth field is filled
+            dateOfBirthEditText.error = getString(R.string.dob_invalid)
+            isCorrected = false
+            Log.d(PersonalInputFragmentTAG, "DOB Input: ${dateOfBirthEditText.text.toString()} - Error: The field is in invalid format")
+        } else {
+            fullNameEditText.error = null
+            Log.d(PersonalInputFragmentTAG, "DOB Input: ${dateOfBirthEditText.text.toString()} - No Error")
         }
 
         return isCorrected

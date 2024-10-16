@@ -47,6 +47,7 @@ class InputActivity : AppCompatActivity() {
         init()
     }
 
+    // Initialise activity view
     private fun init() {
         progressBar = findViewById(R.id.progressBar)
         personalDisplay =  findViewById(R.id.personalProgressTitle)

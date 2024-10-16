@@ -6,6 +6,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.sdmd.assignment3.model.Profile
 import com.sdmd.assignment3.repository.Repository
+import kotlinx.coroutines.tasks.await
 
 const val FirestoreTAG = "Firestore"
 // Remote database for this app. Source of truth
@@ -16,30 +17,30 @@ object Firestore : Repository {
         val profiles = mutableListOf<Profile>()
 
         // Get all documents from profiles collection
-        db.collection("profiles").get()
-            .addOnSuccessListener {
-                for (item in it.documents) {
-                    val product = Profile(
-                        id = item.id,
-                        name = item.data!!["name"] as String?,
-                        birthday = item.data!!["birthday"] as String?,
-                        gender = item.data!!["gender"] as String?,
-                        phone = item.data!!["phone"] as String?,
-                        address = item.data!!["address"] as String?,
-                        suburb = item.data!!["suburb"] as String?,
-                        category = item.data!!["category"] as String?,
-                        createDate = item.data!!["createDate"] as Timestamp?,
-                        modifyDate = item.data!!["modifyDate"] as Timestamp?,
-                    )
-                    profiles.add(product)
-                }
-                Log.d(FirestoreTAG, "Read All Profiles Success")
-            }
-            .addOnFailureListener {
-                Log.e(FirestoreTAG, "Read Failure ${it.localizedMessage!!}")
+        return try {
+            val snapshot = db.collection("profiles").get().await() // Await for Firestore to finish fetching
+            // Convert Firestore documents to a list of Profile objects
+            for (item in snapshot.documents) {
+                val product = Profile(
+                    id = item.id,
+                    name = item.data!!["name"] as String?,
+                    birthday = item.data!!["birthday"] as String?,
+                    gender = item.data!!["gender"] as String?,
+                    phone = item.data!!["phone"] as String?,
+                    address = item.data!!["address"] as String?,
+                    suburb = item.data!!["suburb"] as String?,
+                    category = item.data!!["category"] as String?,
+                    createDate = item.data!!["createDate"] as Timestamp?,
+                    modifyDate = item.data!!["modifyDate"] as Timestamp?,
+                )
+                profiles.add(product)
             }
 
-        return profiles
+            return profiles
+        } catch (e: Exception) {
+            Log.e(FirestoreTAG, "Read Failure: ${e.localizedMessage}")
+            return mutableListOf()
+        }
     }
 
     // Insert new profile to firestore
@@ -49,7 +50,8 @@ object Firestore : Repository {
         // Add document to profiles collection
         db.collection("profiles")
             .add(convertToDocument(profile))
-            .addOnSuccessListener {
+            .addOnSuccessListener { ref ->
+                profile.id = ref.id  // Get the auto-generated ID
                 Log.d(FirestoreTAG, "Insert Profile Success")
             }
             .addOnFailureListener {

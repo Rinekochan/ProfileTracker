@@ -121,7 +121,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/genderField"
                 app:singleSelection="true"
                 app:selectionRequired="true"
-                app:checkedChip="@id/familyInputChip">
+                app:checkedChip="@id/familyInputChip"
+                app:chipSpacingVertical="8dp"
+                android:paddingVertical="8dp">
 
             <com.google.android.material.chip.Chip
                     style="@style/InputChipStyle"

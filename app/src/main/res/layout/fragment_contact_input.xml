@@ -65,8 +65,7 @@
                 app:endIconMode="clear_text"
                 android:textSize="18sp"
                 android:id="@+id/addressEditText"
-                android:background="@color/defaultTheme"
-                android:inputType="date" />
+                android:background="@color/defaultTheme" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
