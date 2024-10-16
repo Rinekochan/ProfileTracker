@@ -17,9 +17,6 @@ class ProfileRepository(
     private val profileDao: ProfileDao, // Room DAO for local database
     private val firestore: Firestore // Firestore object for remote database
 ) : Repository {
-
-    private var isSyncPerformed = false // The sync process only happens once when the class is created
-
     // Fetch all profiles - get from Room, if empty then get from Firestore
     @WorkerThread
     override suspend fun getAllProfiles(): List<Profile> {
@@ -71,7 +68,6 @@ class ProfileRepository(
     @WorkerThread
     private suspend fun synchronizeDatabases() {
         Log.i(ProfileRepositoryTAG, "Synchronise local and remote databases")
-        if (isSyncPerformed) return  // Only perform sync once
 
         val roomProfiles = profileDao.getAllProfiles()
         val remoteProfiles = firestore.getAllProfiles()
@@ -96,7 +92,5 @@ class ProfileRepository(
                 firestore.updateProfile(roomProfile)
             }
         }
-
-        isSyncPerformed = true // Mark sync as done
     }
 }
