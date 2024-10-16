@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.Window
 import android.transition.Fade
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -15,12 +16,14 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.chip.Chip
 import com.sdmd.assignment3.R
+import com.sdmd.assignment3.model.Profile
 import com.sdmd.assignment3.viewmodel.InputActivityViewModel
 
 const val InputActivityTAG: String = "InputActivity"
 
 class InputActivity : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
+    private lateinit var inputTitle: TextView
     private lateinit var personalDisplay: Chip
     private lateinit var contactDisplay: Chip
     private val inputActivityViewModel: InputActivityViewModel by viewModels()
@@ -47,8 +50,15 @@ class InputActivity : AppCompatActivity() {
         init()
     }
 
-    // Initialise activity view
+    // Initialise the receiving profile intent and activity view
     private fun init() {
+        initView()
+        initIntent()
+    }
+
+    // Initialise activity view
+    private fun initView() {
+        inputTitle = findViewById(R.id.inputTitle)
         progressBar = findViewById(R.id.progressBar)
         personalDisplay =  findViewById(R.id.personalProgressTitle)
         contactDisplay = findViewById(R.id.contactProgressTitle)
@@ -90,5 +100,19 @@ class InputActivity : AppCompatActivity() {
                     .replace(R.id.inputFragmentLayout, myFragment).commit()
             }
         }
+    }
+
+    // Initialise the receiving profile intent
+    private fun initIntent() {
+        val profile = intent.getParcelableExtra("Profile", Profile::class.java)
+        // If the profile existed before, the user is modifying a profile
+        profile?.let{
+            inputTitle.text = getString(R.string.input_activity_title_modify)
+            inputActivityViewModel.setProfile(it)
+            return
+        }
+
+        // If not, the user is creating a new profile
+        inputTitle.text = getString(R.string.input_activity_title_add)
     }
 }

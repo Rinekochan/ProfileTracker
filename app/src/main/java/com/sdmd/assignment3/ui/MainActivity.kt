@@ -102,7 +102,9 @@ class MainActivity : AppCompatActivity(),
                     val intent = result.data
                     // Handle the Intent
                     intent?.getParcelableExtra("Profile", Profile::class.java)?.let {
-                        mainActivityViewModel.insertProfile(it) // Create new object to the database
+                        if(it.id == null) { // If the profile id is not assigned, it's a new profile
+                            mainActivityViewModel.insertProfile(it) // Create new object to the database
+                        }
                     }
                 }
 

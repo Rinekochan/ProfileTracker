@@ -15,6 +15,11 @@ class InputActivityViewModel : ViewModel() {
     val currentPage: LiveData<Int>
         get() = _currentPage
 
+    fun setProfile(profile: Profile) {
+        setPersonalDetails(profile.name!!, profile.birthday, profile.gender, profile.category!!)
+        setContactDetails(profile.phone!!, profile.address, profile.suburb)
+    }
+
     fun setPersonalDetails(name: String, birthday: String?, gender: String?, category: String) {
         _currentProfile.value?.let {
             it.name = name
@@ -24,7 +29,7 @@ class InputActivityViewModel : ViewModel() {
         }
     }
 
-    fun setContactDetails(phone: String?, address: String?, suburb: String?) {
+    fun setContactDetails(phone: String, address: String?, suburb: String?) {
         _currentProfile.value?.let {
             it.phone = phone
             it.address = address
