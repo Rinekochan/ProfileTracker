@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.transition.Explode
 import android.util.Log
 import android.view.Window
-import android.transition.Fade
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge

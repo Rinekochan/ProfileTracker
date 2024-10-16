@@ -4,7 +4,7 @@ import com.sdmd.assignment3.model.Profile
 
 interface Repository {
     suspend fun getAllProfiles(): List<Profile>
-    fun insertProfile(profile: Profile)
-    fun deleteProfile(profile: Profile)
-    fun updateProfile(profile: Profile)
+    suspend fun insertProfile(profile: Profile)
+    suspend fun deleteProfile(profile: Profile)
+    suspend fun updateProfile(profile: Profile)
 }

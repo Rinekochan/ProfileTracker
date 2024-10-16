@@ -14,7 +14,7 @@ class ConfirmationDialogFragment(private val title: String, private val content:
         fun onConfirmationDialogNegativeClick(dialog: DialogFragment)
     }
 
-    var listener: ConfirmationDialogListener? = null
+    private var listener: ConfirmationDialogListener? = null
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             // Use the Alert Dialog Builder class
@@ -22,10 +22,10 @@ class ConfirmationDialogFragment(private val title: String, private val content:
             builder
                 .setTitle(title)
                 .setMessage(content)
-                .setPositiveButton("Yes") { dialog, id ->
+                .setPositiveButton("Yes") { _, _ ->
                     listener?.onConfirmationDialogPositiveClick(this) // Notify activity of positive click
                 }
-                .setNegativeButton("No") { dialog, id ->
+                .setNegativeButton("No") { _, _ ->
                     listener?.onConfirmationDialogNegativeClick(this) // Notify activity of negative click
                 }
             // Create the AlertDialog object and return it.

@@ -4,16 +4,16 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.sdmd.assignment3.database.Firestore
 import com.sdmd.assignment3.model.Profile
-import com.sdmd.assignment3.repository.Repository
+import com.sdmd.assignment3.repository.ProfileRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 const val MainActivityViewModelTAG = "MainActivityViewModelTAG"
 
-class MainActivityViewModel(private val repository: Repository = Firestore) : ViewModel() {
+class MainActivityViewModel(private val repository: ProfileRepository) : ViewModel() {
     private val _selectedCategory = MutableLiveData("All")
     val selectedCategory: LiveData<String>
         get() = _selectedCategory
@@ -21,6 +21,7 @@ class MainActivityViewModel(private val repository: Repository = Firestore) : Vi
     private var _profiles = MutableLiveData<List<Profile>>(listOf())
     val profiles: LiveData<List<Profile>>
         get() = _profiles
+
 
     fun selectCategory(category: String) {
         _selectedCategory.postValue(category)
@@ -66,5 +67,14 @@ class MainActivityViewModel(private val repository: Repository = Firestore) : Vi
             repository.updateProfile(profile)
             getAllProfiles()
         }
+    }
+}
+
+class MainActivityViewModelFactory(private val repository: ProfileRepository) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(MainActivityViewModel::class.java)) {
+            return MainActivityViewModel(repository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

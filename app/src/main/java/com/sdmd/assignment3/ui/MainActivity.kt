@@ -10,20 +10,22 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.sdmd.assignment3.R
+import com.sdmd.assignment3.database.ProfileApplication
 import com.sdmd.assignment3.model.Profile
 import com.sdmd.assignment3.viewmodel.MainActivityViewModel
+import com.sdmd.assignment3.viewmodel.MainActivityViewModelFactory
 
 const val MainActivityTAG: String = "MainActivity"
 
@@ -38,7 +40,7 @@ class MainActivity : AppCompatActivity(),
     private lateinit var list: MutableList<Profile>
     private var selectedProfile: Profile? = null
 
-    private val mainActivityViewModel: MainActivityViewModel by viewModels()
+    private lateinit var mainActivityViewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         with(window) {
@@ -62,8 +64,19 @@ class MainActivity : AppCompatActivity(),
 
     // Initialise activity view and viewmodel
     private fun init() {
-        initView()
         initViewModel()
+        initView()
+        initLiveData()
+    }
+
+    // Initialise view model
+    private fun initViewModel() {
+        // Get the repository from ProfileApplication
+        val repository = (application as ProfileApplication).repository
+
+        // Create mainActivityViewModel using Factory pattern
+        val viewModelFactory = MainActivityViewModelFactory(repository)
+        mainActivityViewModel = ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel::class.java)
     }
 
     // Initialise activity view
@@ -102,7 +115,7 @@ class MainActivity : AppCompatActivity(),
                     // Handle the Intent
                     intent?.getParcelableExtra("Profile", Profile::class.java)?.let {
                         Log.d(MainActivityTAG, "Profile ID: ${it.id}")
-                        if(it.id == null) { // If the profile id is not assigned, it's a new profile
+                        if(it.id == "None") { // If the profile id is not assigned, it's a new profile
                             mainActivityViewModel.insertProfile(it)
                         } else { // Else, the user is modifying a existing profile
                             mainActivityViewModel.updateProfile(it)
@@ -126,8 +139,8 @@ class MainActivity : AppCompatActivity(),
         profilesList.layoutManager = LinearLayoutManager(this)
     }
 
-    // Initialise activity viewmodel
-    private fun initViewModel() {
+    // Initialise viewmodel live data
+    private fun initLiveData() {
         mainActivityViewModel.profiles.observe(this) {
             list = mutableListOf()
             list.addAll(it)
