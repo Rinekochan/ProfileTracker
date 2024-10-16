@@ -21,7 +21,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.Timestamp
 import com.sdmd.assignment3.R
 import com.sdmd.assignment3.model.Profile
 import com.sdmd.assignment3.viewmodel.MainActivityViewModel
@@ -102,6 +101,7 @@ class MainActivity : AppCompatActivity(),
                     val intent = result.data
                     // Handle the Intent
                     intent?.getParcelableExtra("Profile", Profile::class.java)?.let {
+                        Log.d(MainActivityTAG, "Profile ID: ${it.id}")
                         if(it.id == null) { // If the profile id is not assigned, it's a new profile
                             mainActivityViewModel.insertProfile(it)
                         } else { // Else, the user is modifying a existing profile
@@ -129,6 +129,7 @@ class MainActivity : AppCompatActivity(),
     // Initialise activity viewmodel
     private fun initViewModel() {
         mainActivityViewModel.profiles.observe(this) {
+            list = mutableListOf()
             list.addAll(it)
             profileAdapter.updateList(it)
         }

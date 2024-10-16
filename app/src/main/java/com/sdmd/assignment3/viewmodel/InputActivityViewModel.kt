@@ -16,6 +16,10 @@ class InputActivityViewModel : ViewModel() {
         get() = _currentPage
 
     fun setProfile(profile: Profile) {
+        _currentProfile.value?.let{
+            it.id = profile.id
+        }
+
         setPersonalDetails(profile.name!!, profile.birthday, profile.gender, profile.category!!)
         setContactDetails(profile.phone!!, profile.address, profile.suburb)
     }

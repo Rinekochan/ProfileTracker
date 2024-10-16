@@ -1,5 +1,6 @@
 package com.sdmd.assignment3.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.transition.Explode
@@ -8,13 +9,13 @@ import android.view.Window
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.android.material.chip.Chip
 import com.sdmd.assignment3.R
 import com.sdmd.assignment3.model.Profile
 
@@ -101,7 +102,7 @@ class DetailActivity : AppCompatActivity() {
         val modifyProfile: (() -> (Unit)) = {
             val intent = Intent(this, InputActivity::class.java)
             intent.putExtra("Profile", selectedProfile)
-            startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle())
+            startForResult.launch(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(this))
         }
 
         // Handles both normal click and long click events
@@ -111,4 +112,25 @@ class DetailActivity : AppCompatActivity() {
         modifyButton.setOnClickListener { modifyProfile.invoke() }
         modifyButton.setOnLongClickListener { modifyProfile.invoke(); true }
     }
+
+    // Initialise the call for results profile creation intent
+    private val startForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            Log.i(DetailActivityTAG, "Receive intent result to DetailActivity")
+            when (result.resultCode) {
+                Activity.RESULT_OK -> {
+                    Log.i(DetailActivityTAG, "Modify profile successfully")
+                    val intent = result.data
+                    // Handle the Intent
+                    intent?.getParcelableExtra("Profile", Profile::class.java)?.let {
+                        intent.putExtra("Profile", it)
+                        setResult(RESULT_OK, intent) // The profile is modified, send the user back to main activity immediately
+                        finish()
+                    }
+                }
+                Activity.RESULT_CANCELED -> {
+                    Log.i(DetailActivityTAG, "Cancel profile modification")
+                }
+            }
+        }
 }
