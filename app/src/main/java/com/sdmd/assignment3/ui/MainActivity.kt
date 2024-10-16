@@ -103,7 +103,9 @@ class MainActivity : AppCompatActivity(),
                     // Handle the Intent
                     intent?.getParcelableExtra("Profile", Profile::class.java)?.let {
                         if(it.id == null) { // If the profile id is not assigned, it's a new profile
-                            mainActivityViewModel.insertProfile(it) // Create new object to the database
+                            mainActivityViewModel.insertProfile(it)
+                        } else { // Else, the user is modifying a existing profile
+                            mainActivityViewModel.updateProfile(it)
                         }
                     }
                 }
