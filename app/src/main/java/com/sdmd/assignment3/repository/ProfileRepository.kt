@@ -17,6 +17,7 @@ class ProfileRepository(
     private val profileDao: ProfileDao, // Room DAO for local database
     private val firestore: Firestore // Firestore object for remote database
 ) : Repository {
+    private var isSynced = false
     // Fetch all profiles - get from Room, if empty then get from Firestore
     @WorkerThread
     override suspend fun getAllProfiles(): List<Profile> {
@@ -68,7 +69,7 @@ class ProfileRepository(
     @WorkerThread
     private suspend fun synchronizeDatabases() {
         Log.i(ProfileRepositoryTAG, "Synchronise local and remote databases")
-
+        if(isSynced) return // If both databases already synchronised, return
         val roomProfiles = profileDao.getAllProfiles()
         val remoteProfiles = firestore.getAllProfiles()
         Log.d(RoomTAG, "Current Local Database $roomProfiles")
@@ -92,5 +93,6 @@ class ProfileRepository(
                 firestore.updateProfile(roomProfile)
             }
         }
+        isSynced = true
     }
 }

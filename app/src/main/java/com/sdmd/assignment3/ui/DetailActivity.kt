@@ -84,7 +84,11 @@ class DetailActivity : AppCompatActivity() {
             gender.text = it.gender
             dob.text = it.birthday
             phone.text = it.phone
-            address.text = it.address
+            if(it.suburb != "") {
+                address.text = "${it.address}, ${it.suburb}"
+            } else {
+                address.text = it.address
+            }
 
             when(it.category) {
                 "Family" -> categoryLayout.setBackgroundResource(R.color.backgroundSecondary)

@@ -86,7 +86,7 @@ class PersonalInputFragment : Fragment(), ConfirmationDialogFragment.Confirmatio
         inputActivityViewModel.currentProfile.value?.let {
             fullNameEditText.setText(it.name)
             dateOfBirthEditText.setText(it.birthday)
-            genderEditText.setText(it.category)
+            genderEditText.setText(it.gender)
 
             when(it.category) {
                 "Family" -> categoryInputGroup.check(R.id.familyInputChip)
