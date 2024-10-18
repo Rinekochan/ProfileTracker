@@ -8,7 +8,7 @@ import kotlinx.coroutines.tasks.await
 
 const val FirestoreTAG = "Firestore"
 
-// Remote database for this app. Source of truth
+// Remote database for this app
 object Firestore {
     // Get all profiles from firestore
     suspend fun getAllProfiles(): List<Profile> {

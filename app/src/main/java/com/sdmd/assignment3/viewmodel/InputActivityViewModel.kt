@@ -3,7 +3,6 @@ package com.sdmd.assignment3.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.firebase.Timestamp
 import com.sdmd.assignment3.model.Profile
 
 class InputActivityViewModel : ViewModel() {
@@ -15,6 +14,7 @@ class InputActivityViewModel : ViewModel() {
     val currentPage: LiveData<Int>
         get() = _currentPage
 
+    // Set the whole profile information, used when modifying profile
     fun setProfile(profile: Profile) {
         _currentProfile.value?.let{
             it.id = profile.id
@@ -24,6 +24,7 @@ class InputActivityViewModel : ViewModel() {
         setContactDetails(profile.phone!!, profile.address, profile.suburb)
     }
 
+    // Set personal profile information
     fun setPersonalDetails(name: String, birthday: String?, gender: String?, category: String) {
         _currentProfile.value?.let {
             it.name = name
@@ -33,6 +34,7 @@ class InputActivityViewModel : ViewModel() {
         }
     }
 
+    // Set contact profile information
     fun setContactDetails(phone: String, address: String?, suburb: String?) {
         _currentProfile.value?.let {
             it.phone = phone
@@ -41,10 +43,12 @@ class InputActivityViewModel : ViewModel() {
         }
     }
 
+    // Set from PersonalFragment to ContactFragment
     fun setNextPage() {
         _currentPage.postValue(_currentPage.value!! + 1)
     }
 
+    // Set from ContactFragment back to PersonalFragment
     fun setPreviousPage() {
         _currentPage.postValue(_currentPage.value!! - 1)
     }

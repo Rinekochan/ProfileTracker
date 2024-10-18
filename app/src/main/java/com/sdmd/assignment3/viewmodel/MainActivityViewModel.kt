@@ -23,12 +23,13 @@ class MainActivityViewModel(private val repository: ProfileRepository) : ViewMod
         get() = _profiles
 
 
-    fun selectCategory(category: String) {
-        _selectedCategory.postValue(category)
-    }
-
     init {
         getAllProfiles()
+    }
+
+    // Set selected category
+    fun selectCategory(category: String) {
+        _selectedCategory.postValue(category)
     }
 
     // Get all profiles from database (either from local Room or remote Firestore)
@@ -70,6 +71,7 @@ class MainActivityViewModel(private val repository: ProfileRepository) : ViewMod
     }
 }
 
+// Factory pattern used to create MainActivityViewModel
 class MainActivityViewModelFactory(private val repository: ProfileRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainActivityViewModel::class.java)) {

@@ -20,7 +20,8 @@
             android:layout_marginBottom="24dp"
             android:backgroundTint="@color/textPrimary"
             app:strokeColor="@color/backgroundPrimary"
-            app:strokeWidth="2dp">
+            app:strokeWidth="2dp"
+            tools:ignore="TextSizeCheck">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

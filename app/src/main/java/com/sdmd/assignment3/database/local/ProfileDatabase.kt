@@ -5,7 +5,6 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.sdmd.assignment3.model.Profile
-import kotlinx.coroutines.CoroutineScope
 
 const val RoomTAG = "Room"
 // Room database for local cache from Firestore
