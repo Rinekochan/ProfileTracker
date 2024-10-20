@@ -78,9 +78,9 @@ object Firestore {
         try {
             db.collection("profiles")
                 .document(profile.id).update(convertToDocument(profile)).await() // Await Firestore insertion
-            Log.d(FirestoreTAG, "Remote Delete Profile Success")
+            Log.d(FirestoreTAG, "Remote Update Profile Success")
         } catch (e: Exception) {
-            Log.e(FirestoreTAG, "Remote Delete Profile Failure: ${e.localizedMessage}")
+            Log.e(FirestoreTAG, "Remote Update Profile Failure: ${e.localizedMessage}")
         }
     }
 
